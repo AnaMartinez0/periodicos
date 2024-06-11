@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-snap-type: y mandatory; /*Scroll Snap*/
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body{
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+main{
+  max-width: 120rem;
+  margin: 0 auto;  
+}
+p{
+  font-size: 1.8rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--blanco);
+}
+a{
+  text-decoration: none;
+}
+img{
+  width: 100%;
+}
+.contenedor{
+  max-width: 120rem;
+  margin: 0 auto;
+}
+h1, h2, h3{
+  text-align: center;
+  color: var(--secundario);
+  font-size: var(--fuentePrincipal);
+}
+h1{ font-size: 4rem; }
+h2{ font-size: 3.2rem; }
+h3{ font-size: 2.4rem; }

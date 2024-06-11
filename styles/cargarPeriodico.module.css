@@ -1,0 +1,78 @@
+/* Navigation */
+.navigation{
+    background-color: #888a8a;
+    padding: .5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem; 
+}
+.navigation a{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.navigation a:hover{
+    color: white;
+}
+@media (max-width: 480px) {
+    .navigation{
+        background-color: #817d79;
+        padding: 1rem 0;
+        gap: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+/*main*/
+.containerMain{
+    padding: 3rem 50rem;
+}
+.containerMain form input[type="file"]{
+    border: 2px dashed #2ecc71;
+    padding: 5rem;
+    margin: 2rem 0;
+    border-radius: 2rem;
+    color: #333;
+    cursor: pointer;
+}
+.containerMain form input[type="file"] button{
+    background-color: #2ecc71;
+}
+.containerMain form input[type="file"]:hover{
+    background-color: #eafaf1;
+}
+.containerForm{
+    background-color: #fff;
+    padding: 7rem;
+    border-radius: 3rem;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.containerForm h2{
+    font-size: 3rem;
+    padding: 0 0 3rem 0;
+    margin-top: -2rem;
+}
+.containerMain form input[type="text"], 
+.containerMain form input[type="date"],
+.containerMain form input[type="number"]{
+    background-color: #f7f7f7;
+    padding: 1rem 2rem;
+    border-radius: 1.5rem;
+    padding: 1rem;
+}
+.containerForm button{
+    background-color: #1e8449;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    margin: 0 auto;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}

@@ -1,0 +1,127 @@
+/* Principal Edit */
+.containerPrincipal {
+    background-color: #d8d8d786;
+    padding: 3rem;
+    margin: 3rem 30rem;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+  
+.containerImage {
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    height: 70vh;
+    border-radius: 0.5rem;
+    margin-left: 5rem;
+}
+  
+.containerImage img {
+    margin: 0 auto;
+    width: 100%;
+    height: 66vh;
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+.containerTextos {
+    background-color: white;
+    height: 35vh;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 2rem;
+    padding: 2rem;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+.containerTextos h3 {
+    display: flex;
+    align-items: flex-start;
+    font-size: 2rem;
+    padding-top: 2rem;
+}
+.textoFecha {
+    color: grey;
+    font-size: 1.5rem;
+    margin-top: -1rem;
+} 
+.textoPrecio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 2.5rem;
+    color: #8f0000;
+}
+.botonOpcion{
+    background-color: #e00000;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    margin-top: 1rem;
+}
+  
+.botonOpcion:hover {
+   background-color: #ff4d4d;
+   box-shadow: 0px 0px 4px rgba(239, 45, 45, 0.858);
+}
+  
+/* Formulario */
+.containerForm {
+    background-color: white;
+    width: 28%; /* Limitar el ancho máximo para pantallas grandes */
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-left: 15%;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    gap: 1rem;
+    position: absolute; /* Puedes usar fixed si deseas que el formulario permanezca fijo al hacer scroll */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para centrar exactamente */
+    padding: 2rem; /* Añadir un poco de padding para mejorar el aspecto */
+}
+
+.containerForm input[type="text"], 
+.containerForm input[type="date"],
+.containerForm input[type="number"]{
+    background-color: #f7f7f7;
+    padding: 1rem 2rem;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    gap: 1rem;
+
+}
+.buttonGuardar{
+    background-color: #1e8449;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+.buttonCancelar{
+    background-color: #e00000;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}

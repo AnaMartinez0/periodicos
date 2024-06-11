@@ -1,0 +1,100 @@
+.bodyLogin{
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    height: 100vh;
+    background-image: url(../public/top-view-newspaper-pieces-arrangement.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+@media (max-width: 480px) {
+    .bodyLogin{
+        display: block;
+        width: 500px;  /* Ancho específico */
+        height: 900px;
+    }
+}
+.form{
+    background-color: transparent;
+    padding: 2rem;
+    margin: 0 auto;
+    box-shadow: 2px 2px 4px rgba(10, 10, 10, 0.7);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 1rem;
+    width: 30%;
+    height: 65%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@media (max-width: 768px) {
+    .form{
+        width: 70%;
+    }
+}
+@media (max-width: 480px) {
+    .form{
+        width: 70%;
+    }
+}
+.form h2{
+    font-size: 3.5rem;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+@media (max-width: 480px) {
+    .form h2{
+        font-size: 2.5rem;
+    }
+}
+.form p{
+    font-weight: 400;
+    font-size: 2rem;
+    text-align: center;
+    margin: 4px auto 0;
+    color: #e52a23;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+.inputContainer label{
+    font-size: 2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.inputContainer input{
+    padding: .6rem 1rem;
+    border: .5px solid #878787;
+    font-size: 14px;
+    border-radius: 6px;
+    transition-duration: .3s;
+    outline: .5px solid transparent;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.submitButton{
+    margin-top: 1rem;
+    width: 100%;
+    background-color: #e52a23;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: .4rem 0;
+    border: 1px solid transparent;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.submitButton:hover{
+    background-color: #c70d06;
+    color: rgb(250, 250, 250);
+    border: 1px solid #c70d06;
+}
