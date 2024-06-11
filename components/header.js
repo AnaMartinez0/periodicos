@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styles from '../styles/header.module.css';
 import Link from 'next/link';
 import { destroyCookie } from 'nookies';
 import Router from 'next/router';
+import Image from 'next/image';
 
 // Constante para definir el tiempo de inactividad (10 minutos)
 const INACTIVITY_LIMIT = 10 * 60 * 1000; // 10 minutos en milisegundos
@@ -45,7 +46,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link href='/home'>
-        <img className={styles.imgHeader} src={`/LOGO-PILON-1.png`} alt='Logo El Pilón' />
+        <Image className={styles.imgHeader} width={'200%'} height={'70%'} src={`/LOGO-PILON-1.png`} alt='Logo El Pilón' />
       </Link>
       <section className={styles.sectionIcons}>
         <div className={styles.containerIcons}>
@@ -75,13 +76,15 @@ export default function Header() {
             <a onClick={handleLogout}>
               <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z" clipRule="evenodd" />
                 </svg>
               </div>
             </a>
           </Link>
         </div>
       </section>
+
     </header>
   );
 }
+
