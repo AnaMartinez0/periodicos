@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import EditForm from './editform';
 import styles from '../styles/editar.module.css';
+import Image from 'next/image';
 
 export default function Detail({ newspaper }) {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -29,7 +30,7 @@ export default function Detail({ newspaper }) {
   return (
     <div className={`bg-white p-8 justify-center rounded-lg shadow-md ${styles.containerPrincipal}`}>
       <div className={`flex justify-center ${styles.containerImage}`}>
-        <img src={`https://res.cloudinary.com/dillndimq/image/upload/f_auto,q_auto/${hash}.pdf`} alt="" className="w-64 h-90 object-cover rounded-lg" />
+        <Image src={`https://res.cloudinary.com/dillndimq/image/upload/f_auto,q_auto/${hash}.pdf`} alt="" width={'340%'} height={'100%'} className="w-64 h-90 object-cover rounded-lg" />
       </div>
       <div className={`mt-8 ${styles.containerTextos}`}>
         <h3 className={`text-4xl font-bold mb-4 text-end ${isEditing && 'hidden'}`}>{newspaper.attributes.titulo}</h3>

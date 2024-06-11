@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../styles/header.module.css';
 import Link from 'next/link';
 import { destroyCookie } from 'nookies';
+import Image from 'next/image';
 
 function handleLogout() {
   destroyCookie(null, 'login');
@@ -12,7 +13,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link href='/home'>
-        <img className={styles.imgHeader} src={`/LOGO-PILON-1.png`} alt='Logo El Pilón' />
+        <Image className={styles.imgHeader} width={'200%'} height={'70%'} src={`/LOGO-PILON-1.png`} alt='Logo El Pilón' />
       </Link>
       <section className={styles.sectionIcons}>
         <div className={styles.containerIcons}>

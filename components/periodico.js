@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "../styles/periodico.module.css";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function Periodico({ periodico }) {
     const [isAdmin, setIsAdmin] = useState(false);
@@ -12,6 +13,7 @@ export default function Periodico({ periodico }) {
         if (typeof window !== 'undefined') {
             const isAdminValue = localStorage.getItem('isAdmin');
             setIsAdmin(isAdminValue === 'true');
+
         }
     }, []);
 
@@ -42,11 +44,11 @@ export default function Periodico({ periodico }) {
     return (
         <div className="relative flex w-81 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md h-auto" key={periodico.id}>
             <div className="relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-red-gray-500 bg-clip-border text-white shadow-lg shadow-black-gray-500/40 bg-gradient-to-r from-black-500 to-black-600">
-                <img
+                <Image
                     className={styles.imgMain}
                     src={`https://res.cloudinary.com/dillndimq/image/upload/f_auto,q_auto/${hash}.pdf`}
                     alt={titulo}
-                    width={200}
+                    width={250}
                     height={200}
                 />
             </div>
