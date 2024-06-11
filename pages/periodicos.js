@@ -32,6 +32,10 @@ export default function Periodicos() {
                     Id_periodico: purchase.attributes.Id_periodico,
                     Fecha_compra: purchase.attributes.Fecha_compra
                 }));
+
+                // Ordenar por fecha de compra de más reciente a más antigua
+                purchasedItems.sort((a, b) => new Date(b.Fecha_compra) - new Date(a.Fecha_compra));
+
                 setPurchasedItems(purchasedItems);
 
                 const periodicoIds = purchasedItems.map(item => item.Id_periodico);

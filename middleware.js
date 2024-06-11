@@ -4,7 +4,7 @@ export async function middleware(req) {
     const verify = req.cookies.get('login')
     const url = req.url
 
-    if (!verify && (url.includes('/home', '/nosotros', '/upload', '/[id]') || url.includes('/nosotros') || url.includes('/upload') || url.includes('/[id]') || url.includes('/user') || url.includes('/cart'))) {
+    if (!verify && (url.includes('/home', '/nosotros', '/upload', '/[id]') || url.includes('/nosotros') || url.includes('/upload') || url.includes('/[id]') || url.includes('/user') || url.includes('/cart') || url.includes('/_document'))) {
         return NextResponse.redirect(new URL('/', req.url))
     }
 

@@ -1,15 +1,48 @@
-import React from 'react';
+import { useEffect } from 'react';
 import styles from '../styles/header.module.css';
 import Link from 'next/link';
 import { destroyCookie } from 'nookies';
+import Router from 'next/router';
 import Image from 'next/image';
 
+// Constante para definir el tiempo de inactividad (10 minutos)
+const INACTIVITY_LIMIT = 10 * 60 * 1000; // 10 minutos en milisegundos
+
 function handleLogout() {
+  // Destruir cookie de sesión
   destroyCookie(null, 'login');
-  // Puedes redirigir al usuario a la página de inicio de sesión u otra página si es necesario
+
+  // Limpiar local storage
+  localStorage.removeItem('username');
+  localStorage.removeItem('jwt');
+  localStorage.removeItem('isAdmin');
+  localStorage.removeItem('ally-supports-cache');
+  localStorage.removeItem('id_user');
+  localStorage.removeItem('cart');
+
+  // Redirigir al usuario a la página de inicio de sesión
+  Router.push('/login');
+}
+
+function handleWindowClose() {
+  const lastInteraction = new Date().getTime();
+  sessionStorage.setItem('lastInteraction', lastInteraction);
 }
 
 export default function Header() {
+  useEffect(() => {
+    // Al cargar la página, verifica si han pasado más de 10 minutos de inactividad
+    clearLocalStorageIfInactive();
+
+    // Registrar la hora de la última interacción cuando el usuario cierra el navegador
+    window.addEventListener('beforeunload', handleWindowClose);
+
+    // Limpiar el evento al desmontar el componente
+    return () => {
+      window.removeEventListener('beforeunload', handleWindowClose);
+    };
+  }, []);
+
   return (
     <header className={styles.header}>
       <Link href='/home'>
@@ -27,18 +60,6 @@ export default function Header() {
             </a>
           </Link>
         </div>
-        {/* <div className={styles.containerIcons}>
-          <Link href="">
-            <a>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-                  <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
-                </svg>
-              </div>
-            </a>
-          </Link>
-        </div> */}
         <div className={styles.containerIcons}>
           <Link href="/cart">
             <a>
@@ -62,6 +83,8 @@ export default function Header() {
           </Link>
         </div>
       </section>
+
     </header>
   );
 }
+
