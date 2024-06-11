@@ -33,34 +33,59 @@ export default function Cart() {
         localStorage.setItem('cart', JSON.stringify(updatedCart));
     };
 
-    const handleBuyNow = () => {
-        window.location.href = '/payment';
+    const handleBuyNow = async () => {
+        const userId = parseInt(localStorage.getItem('id_user'), 10);
+        const userName = localStorage.getItem('username');
+        const token = localStorage.getItem('jwt');
+        const date = new Date().toISOString().split('T')[0];
+
+        const purchasedItems = cart.map(item => ({
+            Id_User: userId,
+            User: userName,
+            Id_periodico: parseInt(item.id, 10),
+            Titulo: item.attributes.titulo,
+            Fecha_compra: date
+        }));
+
+        try {
+            for (let item of purchasedItems) {
+                const response = await fetch(`https://preiodicos-strapi.onrender.com/api/compras`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ data: item })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Error response from API:', errorText);
+                    throw new Error('Error al guardar la compra');
+                }
+            }
+
+            localStorage.removeItem('cart');
+            console.log('Compra guardada exitosamente');
+
+            // Redirigir a la pasarela de pago de Wompi
+            Router.push('https://checkout.wompi.co/l/test_PsMWbA');
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     return (
         <Layout title='Carrito de compras'>
             <nav className={styles.navigation}>
-                <Link className={styles.link} href="/home">
-                    Inicio
-                </Link>
-
+                <Link className={styles.link} href="/home">Inicio</Link>
                 {!isAdmin && (
-                    <Link className={styles.link} href="/periodicos">
-                        Periódicos
-                    </Link>
+                    <>
+                        <Link className={styles.link} href="/periodicos">Periódicos</Link>
+                        <Link className={styles.link} href="/nosotros">Acerca de Nosotros</Link>
+                    </>
                 )}
-
-                {!isAdmin && (
-                    <Link className={styles.link} href="/nosotros">
-                        Acerca de Nosotros
-                    </Link>
-                )}
-
-                {isAdmin && (
-                    <Link className={styles.link} href="/upload">
-                        Subir Periódico
-                    </Link>
-                )}
+                {isAdmin && <Link className={styles.link} href="/upload">Subir Periódico</Link>}
             </nav>
             <div className={style.cartContainer}>
                 <h1 className={style.title}>Carrito de Compras</h1>

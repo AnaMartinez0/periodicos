@@ -1,19 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../styles/header.module.css';
 import Link from 'next/link';
 import { destroyCookie } from 'nookies';
-import Image from 'next/image';
+import Router from 'next/router';
+
+// Constante para definir el tiempo de inactividad (10 minutos)
+const INACTIVITY_LIMIT = 10 * 60 * 1000; // 10 minutos en milisegundos
 
 function handleLogout() {
+  // Destruir cookie de sesión
   destroyCookie(null, 'login');
-  // Puedes redirigir al usuario a la página de inicio de sesión u otra página si es necesario
+
+  // Limpiar local storage
+  localStorage.removeItem('username');
+  localStorage.removeItem('jwt');
+  localStorage.removeItem('isAdmin');
+  localStorage.removeItem('ally-supports-cache');
+  localStorage.removeItem('id_user');
+  localStorage.removeItem('cart');
+
+  // Redirigir al usuario a la página de inicio de sesión
+  Router.push('/login');
+}
+
+function handleWindowClose() {
+  const lastInteraction = new Date().getTime();
+  sessionStorage.setItem('lastInteraction', lastInteraction);
 }
 
 export default function Header() {
+  useEffect(() => {
+    // Al cargar la página, verifica si han pasado más de 10 minutos de inactividad
+    clearLocalStorageIfInactive();
+
+    // Registrar la hora de la última interacción cuando el usuario cierra el navegador
+    window.addEventListener('beforeunload', handleWindowClose);
+
+    // Limpiar el evento al desmontar el componente
+    return () => {
+      window.removeEventListener('beforeunload', handleWindowClose);
+    };
+  }, []);
+
   return (
     <header className={styles.header}>
       <Link href='/home'>
-        <Image className={styles.imgHeader} width={'200%'} height={'70%'} src={`/LOGO-PILON-1.png`} alt='Logo El Pilón' />
+        <img className={styles.imgHeader} src={`/LOGO-PILON-1.png`} alt='Logo El Pilón' />
       </Link>
       <section className={styles.sectionIcons}>
         <div className={styles.containerIcons}>
@@ -27,18 +59,6 @@ export default function Header() {
             </a>
           </Link>
         </div>
-        {/* <div className={styles.containerIcons}>
-          <Link href="">
-            <a>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-                  <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
-                </svg>
-              </div>
-            </a>
-          </Link>
-        </div> */}
         <div className={styles.containerIcons}>
           <Link href="/cart">
             <a>
@@ -55,7 +75,7 @@ export default function Header() {
             <a onClick={handleLogout}>
               <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z" clipRule="evenodd" />
                 </svg>
               </div>
             </a>
