@@ -29,6 +29,23 @@ function handleWindowClose() {
   sessionStorage.setItem('lastInteraction', lastInteraction);
 }
 
+function clearLocalStorageIfInactive() {
+  const lastInteraction = sessionStorage.getItem('lastInteraction');
+  if (lastInteraction) {
+    const currentTime = new Date().getTime();
+    const timeElapsed = currentTime - lastInteraction;
+    if (timeElapsed > INACTIVITY_LIMIT) {
+      localStorage.removeItem('username');
+      localStorage.removeItem('jwt');
+      localStorage.removeItem('isAdmin');
+      localStorage.removeItem('ally-supports-cache');
+      localStorage.removeItem('id_user');
+      localStorage.removeItem('cart');
+      destroyCookie(null, 'login');
+    }
+  }
+}
+
 export default function Header() {
   useEffect(() => {
     // Al cargar la página, verifica si han pasado más de 10 minutos de inactividad
