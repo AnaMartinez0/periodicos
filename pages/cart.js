@@ -3,6 +3,7 @@ import Layout from '../components/layout';
 import styles from "../styles/home.module.css";
 import style from "../styles/cart.module.css";
 import { useEffect, useState } from 'react';
+import Router from 'next/router';
 
 export default function Cart() {
     const [isAdmin, setIsAdmin] = useState(false);
