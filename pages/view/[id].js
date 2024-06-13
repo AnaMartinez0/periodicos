@@ -11,7 +11,10 @@ export default function ViewPeriodico() {
 
     useEffect(() => {
         const fetchPeriodico = async () => {
-            if (!id) return;
+            if (!id) {
+                console.warn('ID is not defined');
+                return;
+            }
 
             try {
                 const response = await axios.get(`https://preiodicos-strapi.onrender.com/api/periodicos/${id}?populate=periodico`);
