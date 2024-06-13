@@ -94,11 +94,12 @@
 /* Formulario */
 .containerForm {
     background-color: white;
-    width: 28%; /* Limitar el ancho máximo para pantallas grandes */
+    width: 29%; /* Limitar el ancho máximo para pantallas grandes */
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    margin-left: 15%;
+    margin-left: 21%;
+    margin-top: -2.1%;
     border-radius: 2rem;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
     gap: 1rem;
@@ -107,6 +108,13 @@
     left: 50%; /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta para centrar exactamente */
     padding: 2rem; /* Añadir un poco de padding para mejorar el aspecto */
+}
+@media (min-width: 1920px) {
+    .containerForm{
+        margin: 0 auto;
+        margin-left: 20.8%;
+        margin-top: -6.5%;
+    }
 }
 
 .containerForm input[type="text"], 
