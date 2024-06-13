@@ -16,9 +16,9 @@ export default function ViewPeriodico() {
             try {
                 const response = await axios.get(`https://preiodicos-strapi.onrender.com/api/periodicos/${id}?populate=periodico`);
                 setPeriodico(response.data.data);
-                setLoading(false);
             } catch (error) {
                 console.error('Error fetching periodico:', error);
+            } finally {
                 setLoading(false);
             }
         };
@@ -29,7 +29,10 @@ export default function ViewPeriodico() {
     useEffect(() => {
         if (!periodico) return;
 
-        const hash = periodico.attributes.periodico.data[0].attributes.hash;
+        const periodicoData = periodico.attributes.periodico?.data;
+        if (!periodicoData || periodicoData.length === 0) return;
+
+        const hash = periodicoData[0].attributes.hash;
         const pdfUrl = `https://res.cloudinary.com/dillndimq/image/upload/${hash}.pdf`;
 
         const loadPDF = async () => {
