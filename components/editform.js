@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import styles from '../styles/editar.module.css'
+import styles from '../styles/editar.module.css';
 
 export default function EditForm({ newspaper, setIsEditing }) {
     const [formData, setFormData] = useState({
@@ -11,11 +11,9 @@ export default function EditForm({ newspaper, setIsEditing }) {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
-
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,12 +21,11 @@ export default function EditForm({ newspaper, setIsEditing }) {
             console.log('Request body:', formData); // Log the request body
             const response = await axios.put(`https://preiodicos-strapi.onrender.com/api/periodicos/${newspaper.id}`, { data: formData });
             if (response.status === 200) {
+                setSuccess('Newspaper updated successfully');
                 setTimeout(() => {
                     window.location.reload();
-                }, 1);
+                }, 1000);
                 setIsEditing(false);
-                setSuccess('Newspaper updated successfully');
-
             } else {
                 setError('Error updating newspaper');
             }
@@ -84,6 +81,12 @@ export default function EditForm({ newspaper, setIsEditing }) {
             {error && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <span className="block sm:inline">{error}</span>
+                </div>
+            )}
+
+            {success && (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <span className="block sm:inline">{success}</span>
                 </div>
             )}
 
