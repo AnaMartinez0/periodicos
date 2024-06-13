@@ -17,15 +17,7 @@ export default function Footer() {
           <p>Mercadeo: 3013528676 - 3043839018</p>
         </div>
         <div className={styles.footer__redes}>
-          <section className={styles.iconos_redes}>
-            <h3>Instagram</h3>
-            <div className={styles.iconos}>
-                
-            </div>
-          </section>
         </div>
-
-        
       </section>
     </footer>
   );

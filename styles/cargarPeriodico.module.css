@@ -51,6 +51,13 @@
     border-radius: 3rem;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
+@media (max-width: 1920px) {
+    .containerForm{
+        margin: 0 auto;
+        width: 60%;
+        height: 50%;
+    }
+}
 .containerForm h2{
     font-size: 3rem;
     padding: 0 0 3rem 0;

@@ -24,20 +24,16 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 1rem;
     width: 30%;
-    height: 65%;
+    height: 60%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-@media (max-width: 768px) {
+@media (max-width: 1920px) {
     .form{
-        width: 70%;
-    }
-}
-@media (max-width: 480px) {
-    .form{
-        width: 70%;
+        width: 30%;
+        height: 50%;
     }
 }
 .form h2{

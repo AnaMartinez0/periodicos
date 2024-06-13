@@ -48,7 +48,7 @@ export default function Periodico({ periodico }) {
                     className={styles.imgMain}
                     src={`https://res.cloudinary.com/dillndimq/image/upload/f_auto,q_auto/${hash}.pdf`}
                     alt={titulo}
-                    width={250}
+                    width={350}
                     height={200}
                 />
             </div>

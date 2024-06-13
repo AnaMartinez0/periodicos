@@ -33,6 +33,7 @@
 
   border-radius: 0.5rem;
 }
+
 .image_container .image {
   position: absolute;
   top: 50%;
@@ -147,7 +148,27 @@
   color: white;
   position: absolute;
   bottom: 1.5rem;
-  left: 20rem;
+  left: 18rem;
   padding: 1.5rem;
   border-radius: 3rem;
+}
+@media (max-width: 480px) {
+  .botonAdd{
+    left: 21rem;
+  }
+}
+@media (min-width: 768px) {
+  .botonAdd{
+    left: 24rem;
+  }
+}
+@media (min-width: 1440px) {
+  .botonAdd{
+    left: 18rem;
+  }
+}
+@media (min-width: 1920px) {
+  .botonAdd{
+    left: 27rem;
+  }
 }
