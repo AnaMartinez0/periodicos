@@ -13,12 +13,17 @@ export default function NewspaperDetails() {
     const [isAdmin, setIsAdmin] = useState(false);
 
     const fetchData = async () => {
-        const res = await fetch(`https://preiodicos-strapi.onrender.com/api/periodicos?filters[id]=${id}&populate=periodico`)
-        const { data: newspaperData } = await res.json()
-        if (newspaperData.length > 0) {
-            setNewspaper(newspaperData[0])
-        } else {
-            console.error('No se encontró ningún periódico con el id proporcionado')
+        if (!id) return;
+        try {
+            const res = await fetch(`https://preiodicos-strapi.onrender.com/api/periodicos?filters[id]=${id}&populate=periodico`)
+            const { data: newspaperData } = await res.json()
+            if (newspaperData && newspaperData.length > 0) {
+                setNewspaper(newspaperData[0])
+            } else {
+                console.error('No se encontró ningún periódico con el id proporcionado')
+            }
+        } catch (error) {
+            console.error('Error al obtener los datos del periódico:', error)
         }
     }
 
@@ -33,14 +38,13 @@ export default function NewspaperDetails() {
         fetchData()
     }, [id])
 
-
     return (
-        <Layout title={`Newsp ${id} description={Details for newspaper ${id}`}>
+        <Layout title={`Newspaper ${id}`} description={`Details for newspaper ${id}`}>
             <nav className={styles.navigation}>
-                <Link className={styles.link} href="/home">Inicio</Link>
-                {!isAdmin && <Link className={styles.link} href="/periodicos">Periodicos</Link>}
-                {!isAdmin && <Link className={styles.link} href="/nosotros">Acerca de Nosotros</Link>}
-                {isAdmin && <Link className={styles.link} href="/upload">Subir Periodico</Link>}
+                <Link href="/home"><a className={styles.link}>Inicio</a></Link>
+                {!isAdmin && <Link href="/periodicos"><a className={styles.link}>Periodicos</a></Link>}
+                {!isAdmin && <Link href="/nosotros"><a className={styles.link}>Acerca de Nosotros</a></Link>}
+                {isAdmin && <Link href="/upload"><a className={styles.link}>Subir Periodico</a></Link>}
             </nav>
             {newspaper ? <Detail newspaper={newspaper} /> : <p>No se encontró ningún periódico con el id proporcionado</p>}
         </Layout>
